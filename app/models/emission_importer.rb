@@ -3,7 +3,7 @@ require 'csv'
 class EmissionImporter
   # Creates a new Emission record in the db
   # for each row of the csv in the file_path.
-  # params: file_path, String
+  # params: file_path, String.
   #
   def import_from_csv(file_path)
     CSV.foreach(Rails.root.to_s + file_path, headers: true, converters: :numeric) do |row|
@@ -14,8 +14,8 @@ class EmissionImporter
   end
 
   private
-  # Checks if word is numeric
-  # params: word, String
+  # Checks if word is numeric.
+  # params: word, String.
   #
   def numeric?(word)
     Float(word) != nil rescue false
