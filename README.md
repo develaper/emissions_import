@@ -31,19 +31,19 @@ The result should be 0 if it is the first time running the task.
 
 Then we need a running server:
 rails s
-Now that the environment is up and working, in a different tab, we can run the task:
+Now that the environment is up and working, open a new tab where you can run the task:
 rake emissions:import_csv
 
 At this point we have our job ready to be processed.
 Check it out here:
 http://localhost:3000/sidekiq/
 
-To end the flow we can force the execution with the command:
+To end the flow you can force the execution with the command:
 bundle exec sidekiq
 
-And now, if we check again the number of Emission.count in the rails console again we will notice a huge increment.
+And now, if you check again the number of Emission.count in the rails console again you will notice a huge increment.
 
 
 * A note about Figaro, environments and storage:
-For testing purpose I have committed and pushed the storage folder and sub-folders as well as the config/application.yml file but under no reason I would never in my live do it in a real environment.
+For easy sharing/testing purpose I have committed and pushed the storage folder and sub-folders as well as the config/application.yml file but under no reason I would never in my live do it in a real environment.
 Just saying ;-)
