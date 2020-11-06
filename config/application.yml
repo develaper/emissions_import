@@ -1,0 +1,11 @@
+test:
+  file_name: "emissions.csv"
+  csv_folder_path: "/storage/test/csv/"
+
+development:
+  file_name: "emissions.csv"
+  csv_folder_path: "/storage/development/csv/"
+
+production:
+  file_name: "emissions.csv"
+  csv_folder_path: "/storage/production/csv/"

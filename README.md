@@ -1,24 +1,49 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Starting with:
+git clone https://github.com/develaper/emissions_import.git
+followed by:
+bundle install
+As usual should do the most part of the installation.
 
-Things you may want to cover:
+* Database creation & Database initialization:
 
-* Ruby version
+Remember also to do:
+rails db:setup
+rails db:migrate
 
-* System dependencies
+* System dependencies:
 
-* Configuration
+And also you will need Redis installed locally to ensure that Sidekiq will work as expected.
 
-* Database creation
+* How to run the test suite:
+For this project I decided to rely in the simplicity of Minitest so, to run the whole suit, you just have to run:
+rails test test/
 
-* Database initialization
+* Running the task and then processing the job:
+Our import process will be handled by a rake task that calls to an ActiveJob.
 
-* How to run the test suite
+First of all we will check the current value of Emission.count in the rails console just to "manually" validate that everything works fine running:
+rails console
+Emission.count
 
-* Services (job queues, cache servers, search engines, etc.)
+The result should be 0 if it is the first time running the task.
 
-* Deployment instructions
+Then we need a running server:
+rails s
+Now that the environment is up and working, open a new tab where you can run the task:
+rake emissions:import_csv
 
-* ...
+At this point we have our job ready to be processed.
+Check it out here:
+http://localhost:3000/sidekiq/
+
+To end the flow you can force the execution with the command:
+bundle exec sidekiq
+
+And now, if you check again the number of Emission.count in the rails console again you will notice a huge increment.
+
+
+* A note about Figaro, environments and storage:
+For easy sharing/testing purpose I have committed and pushed the storage folder and sub-folders as well as the config/application.yml file but under no reason I would never in my live do it in a real environment.
+Just saying ;-)
