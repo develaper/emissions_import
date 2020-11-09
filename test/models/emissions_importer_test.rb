@@ -15,4 +15,18 @@ class EmissionImporterTest < ActiveSupport::TestCase
       EmissionImporter.new.import_from_csv(@path_to_file)
     end
   end
+  # not so happy path
+  # none existing file
+  #
+  test "raise exxception if file dont exist" do
+    path_to_file = ENV['csv_folder_path'] + "bad.csv"
+    assert_raises(EmissionImporter::InvalidFileException) { EmissionImporter.new.import_from_csv(path_to_file) }
+  end
+
+  # not valid file extension
+  #
+  test "raise exxception if the file extension is not csv" do
+    path_to_file = ENV['csv_folder_path'] + "bad.txt"
+    assert_raises(EmissionImporter::InvalidFileException) { EmissionImporter.new.import_from_csv(path_to_file) }
+  end
 end
