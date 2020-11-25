@@ -16,7 +16,7 @@ class EmissionImporter
     CSV.foreach(file_path, headers: true, converters: :numeric) do |row|
       row_data = row.to_hash.transform_keys! { |key| key.to_s.downcase }
       values_by_year = row_data.select { |key, value| numeric?(key) }
-      Emission.create(country: row_data["country"], sector: row_data["sector"], parent_sector: row_data["parent ector"], values_by_year: values_by_year)
+      Emission.create(country: row_data["country"], sector: row_data["sector"], parent_sector: row_data["parent sector"], values_by_year: values_by_year)
     end
   end
 
