@@ -82,4 +82,5 @@ production:
   <<: *default
   database: vizzuality_test_production
   username: vizzuality_test
-  password: <%= ENV['VIZZUALITY_TEST_DATABASE_PASSWORD'] %>
+  password: <%= Rails.application.credentials[:VIZZUALITY_TEST_DATABASE_PASSWORD] %>
+  # password: <%= ENV['VIZZUALITY_TEST_DATABASE_PASSWORD'] %>
